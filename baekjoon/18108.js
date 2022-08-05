@@ -1,3 +1,3 @@
-// const input = " joonAs ".trim().split(" ");
+// const input = " 2541 ";
 const input = require("fs").readFileSync("/dev/stdin").toString().trim().split(" ");
-console.log(input[0] + "??!");
+console.log(parseInt(input) - 543);
