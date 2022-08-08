@@ -1,7 +1,7 @@
-const item = "3 2 2 2 3 4";
-const input = item.toString().trim().split(" ");
+// const item = "3 2 2 2 3 4";
+// const input = item.toString().trim().split(" ");
 const chess = [1, 1, 2, 2, 2, 8];
-// const input = require("fs").readFileSync("/dev/stdin").toString().trim().split(" ");
+const input = require("fs").readFileSync("/dev/stdin").toString().trim().split(" ");
 
 let str = "";
 input.map((v, i) => {
