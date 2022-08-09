@@ -1,5 +1,3 @@
-const a = "try hello world";
-
 function solution(s) {
   var answer = "";
   s.split(" ").map((v, i) => {
@@ -10,5 +8,3 @@ function solution(s) {
   });
   return answer;
 }
-
-console.log(solution(a));
