@@ -1,25 +1,17 @@
-const a = 15;
-const b = 60;
+const a = ["mislav", "stanko", "mislav", "ana"];
+const b = ["stanko", "ana", "mislav"];
 
-function solution(n, m) {
-  let answer = [];
+function solution(participant, completion) {
+  let answer = "";
+  participant.sort();
+  completion.sort();
 
-  let smaller = Math.min(n, m);
-  let arr = [];
-  let lcm = 1;
-  let gcd = 1;
-
-  // 최소공배수
-  for (let i = 1; i <= smaller; i++) {
-    if (n % i === 0 && m % i === 0) {
-      arr.push(i);
+  participant.some((v, i) => {
+    if (v !== completion[i]) {
+      answer = v;
+      return true;
     }
-  }
-
-  // 최대공약수
-  gcd = Math.max(...arr);
-  lcm = (n / gcd) * (m / gcd) * gcd;
-  answer = [gcd, lcm];
+  });
 
   return answer;
 }
