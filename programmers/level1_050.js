@@ -1,3 +1,5 @@
+// Lv. 1 숫자 문자열과 영단어
+
 const a = "one4seveneightone4seveneightone4seveneight";
 
 function solution(s) {

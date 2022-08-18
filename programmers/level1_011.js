@@ -1,3 +1,5 @@
+// Lv. 1 정수 제곱근 판별
+
 function solution(n) {
   var answer = 0;
   console.log(n);

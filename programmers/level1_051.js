@@ -1,3 +1,5 @@
+// Lv. 1 신규 아이디 추천
+
 const input = "abcdefghijklmn.p";
 
 function solution1(new_id) {

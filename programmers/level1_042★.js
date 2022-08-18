@@ -1,3 +1,5 @@
+// Lv. 1 완주하지 못한 선수
+
 const a = ["marina", "josipa", "nikola", "vinko", "filipa"];
 const b = ["josipa", "filipa", "marina", "nikola"];
 

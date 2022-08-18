@@ -1,3 +1,5 @@
+// Lv. 1 부족한 금액 계산하기
+
 let price = 5;
 let money = 100;
 let count = 4;

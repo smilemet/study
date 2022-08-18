@@ -1,3 +1,5 @@
+// Lv. 1 나머지가 1이 되는 수 찾기
+
 const a = 12;
 
 function solution(n) {
