@@ -2,6 +2,10 @@
 
 const a = 10;
 
-function solution(a, b) {}
+function solution(s) {
+  var answer = 0;
 
-console.log(solution(a, b));
+  return answer;
+}
+
+console.log(solution(a));

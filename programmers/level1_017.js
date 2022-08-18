@@ -65,12 +65,14 @@ function solution(s, n) {
   answer = s
     .split("")
     .map((v) => {
-      if (big.indexOf(v) !== -1) {
+      if (v !== " " && big.indexOf(v) !== -1) {
         let num = big.indexOf(v);
-        return big[(num + n) % 25];
-      } else if (big.indexOf(v) !== -1) {
+        return big[num + n >= 26 ? num + n - 26 : num + n];
+      } else if (v !== " " && big.indexOf(v) === -1) {
         let num = small.indexOf(v);
-        return small[(num + n) % 25];
+        return small[num + n >= 26 ? num + n - 26 : num + n];
+      } else if (v == " ") {
+        return " ";
       }
     })
     .join("");
@@ -79,3 +81,23 @@ function solution(s, n) {
 }
 
 console.log(solution(a, b));
+
+// 다른 사람의 풀이
+function solution(s, n) {
+  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  var lower = "abcdefghijklmnopqrstuvwxyz";
+  var answer = "";
+
+  for (var i = 0; i < s.length; i++) {
+    var text = s[i];
+    if (text == " ") {
+      answer += " ";
+      continue;
+    }
+    var textArr = upper.includes(text) ? upper : lower;
+    var index = textArr.indexOf(text) + n;
+    if (index >= textArr.length) index -= textArr.length;
+    answer += textArr[index];
+  }
+  return answer;
+}
