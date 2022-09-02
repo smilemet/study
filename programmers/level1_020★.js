@@ -5,16 +5,18 @@ const a = 10;
 function solution(n) {
   var answer = 0;
 
-  for (let i = 2; i <= n; i++) {
-    let count = 0;
-    for (let j = 2; j <= i; j++) {
-      if (i % j === 0) {
-        count++;
-      }
+  const arr = new Array(n + 1).fill(true);
+  console.log(arr);
+
+  for (let i = 2; i <= n; ++i) {
+    if (!arr[i]) continue;
+    for (let k = i * 2; k <= n; k += i) {
+      arr[k] = false;
     }
-    if (count === 2) {
-      answer++;
-    }
+  }
+
+  for (let i = 2; i <= n; ++i) {
+    if (arr[i]) answer++;
   }
   return answer;
 }
