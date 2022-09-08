@@ -1,3 +1,4 @@
+// 신규 아이디 추천
 const input = "abcdefghijklmn.p";
 
 function solution(new_id) {
