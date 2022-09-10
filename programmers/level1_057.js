@@ -1,101 +1,69 @@
-// [카카오 인턴] 키패드 누르기
-const numbers = [1, 3, 4, 5, 8, 2, 1, 4, 5, 9, 5];
-const hand = "right";
+// 로또의 최고 순위와 최저 순위
+const lottos = [0, 0, 0, 0, 0, 0];
+const win_nums = [38, 19, 20, 40, 15, 25];
 
-function solution(numbers, hand) {
-  var answer = "";
-  let keyboard = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    ["*", 0, "#"],
-  ];
+function solution(lottos, win_nums) {
+  var answer = [];
 
-  let currentL = [];
-  let currentR = [];
+  let zero = lottos.filter((v) => v === 0);
+  let not = lottos.filter((v) => v !== 0).filter((v) => win_nums.indexOf(v) === -1);
+  console.log(not);
 
-  // 위치 리턴 함수
-  const position = (num) => {
-    const posY = keyboard
-      .map((arr, index) => {
-        if (arr.indexOf(num) !== -1) return 4 - index;
-        return -1;
-      })
-      .filter((v) => v !== -1);
+  // 최고
+  switch (win_nums.length - not.length) {
+    case 6:
+      answer.push(1);
+      break;
+    case 5:
+      answer.push(2);
+      break;
+    case 4:
+      answer.push(3);
+      break;
+    case 3:
+      answer.push(4);
+      break;
+    case 2:
+      answer.push(5);
+      break;
+    default:
+      answer.push(6);
+      break;
+  }
 
-    const posX = (num) => {
-      if (num === "*") return 1;
-      if (num === 0) return 2;
-      if (num === "#") return 3;
-      return num % 3 === 0 ? 3 : num % 3;
-    };
-
-    return [posX(num), posY[0]];
-  };
-
-  numbers.forEach((number) => {
-    // 1, 4, 7
-    if (number % 3 === 1) {
-      answer += "L";
-      currentL = position(number);
-    } else if (number !== 0 && number % 3 === 0) {
-      answer += "R";
-      currentR = position(number);
-    } else {
-      let currentX = position(number);
-      let rootL_X = Math.abs(currentL[0] + currentL[1] - (currentX[0] + currentX[1]));
-      let rootR_X = Math.abs(currentR[0] + currentR[1] - (currentX[0] + currentX[1]));
-
-      if (rootL_X > rootR_X) {
-        answer += "R";
-        currentR = position(number);
-      } else if (rootL_X === rootR_X) {
-        if (hand === "right") {
-          answer += "R";
-          currentR = position(number);
-        } else {
-          answer += "L";
-          currentL = position(number);
-        }
-      } else {
-        answer += "L";
-        currentL = position(number);
-      }
-    }
-  });
+  // 최저
+  switch (win_nums.length - zero.length - not.length) {
+    case 6:
+      answer.push(1);
+      break;
+    case 5:
+      answer.push(2);
+      break;
+    case 4:
+      answer.push(3);
+      break;
+    case 3:
+      answer.push(4);
+      break;
+    case 2:
+      answer.push(5);
+      break;
+    default:
+      answer.push(6);
+      break;
+  }
   return answer;
 }
+console.log(solution(lottos, win_nums));
 
-// 다른 풀이 2
-function solution(numbers, hand) {
-  hand = hand[0] === "r" ? "R" : "L";
-  // Y축 위치값
-  let position = [1, 4, 4, 4, 3, 3, 3, 2, 2, 2];
-  // 손 위치
-  let h = { L: [1, 1], R: [1, 1] };
+// 다른 풀이
+function solution(lottos, win_nums) {
+  const rank = [6, 6, 5, 4, 3, 2, 1];
 
-  return numbers
-    .map((x) => {
-      if (/[147]/.test(x)) {
-        h.L = [position[x], 1];
-        return "L";
-      }
-      if (/[369]/.test(x)) {
-        h.R = [position[x], 1];
-        return "R";
-      }
-      let distL = Math.abs(position[x] - h.L[0]) + h.L[1];
-      let distR = Math.abs(position[x] - h.R[0]) + h.R[1];
-      if (distL === distR) {
-        h[hand] = [position[x], 0];
-        return hand;
-      }
-      if (distL < distR) {
-        h.L = [position[x], 0];
-        return "L";
-      }
-      h.R = [position[x], 0];
-      return "R";
-    })
-    .join("");
+  let minCount = lottos.filter((v) => win_nums.includes(v)).length;
+  let zeroCount = lottos.filter((v) => !v).length;
+
+  const maxCount = minCount + zeroCount;
+
+  return [rank[maxCount], rank[minCount]];
 }
