@@ -1,4 +1,4 @@
-// 신규 아이디 추천
+// 신고 결과 받기
 const id_list = ["con", "ryan"];
 const report = ["ryan con", "ryan con", "ryan con", "ryan con"];
 const k = 3;
