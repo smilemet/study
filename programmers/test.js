@@ -1,25 +1,28 @@
-const a = ["mislav", "stanko", "mislav", "ana"];
-const b = ["stanko", "ana", "mislav"];
+const n = 622395;
 
-function solution(participant, completion) {
-  let answer = "";
-  participant.sort();
-  completion.sort();
-
-  participant.some((v, i) => {
-    if (v !== completion[i]) {
-      answer = v;
-      return true;
-    }
-  });
-
-  return answer;
+function solution(n) {
+  var i, j;
+  for (i = 0; !(n & 1); i++) {
+    n = n >> 1;
+  }
+  for (j = 0; n & 1; i++, j++) {
+    n = n >> 1;
+  }
+  console.log(j);
+  for (j--, n++; i !== j; i--) {
+    console.log("j ::: " + j);
+    console.log("i ::: " + i);
+    n = n << 1;
+  }
+  for (i; i; i--, n++) {
+    n = n << 1;
+  }
+  return n;
 }
 
-console.log(solution(a, b));
+console.log(solution(n));
 
-// function gcdlcm(a, b) {
-//   var r;
-//   for(var ab= a*b;r = a % b;a = b, b = r){}
-//   return [b, ab/b];
-// }
+const a = 622397;
+const b = 622395;
+
+console.log(b.toString(2), a.toString(2))
