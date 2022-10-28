@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "fs": "^0.0.1-security"
-  }
+  },
+  "name": "baekjoon",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT"
 }
